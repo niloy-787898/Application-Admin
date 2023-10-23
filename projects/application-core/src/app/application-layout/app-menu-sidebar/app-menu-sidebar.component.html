@@ -1,0 +1,54 @@
+<section class="app-menubar-section">
+  <div class="app-menubar" [class.open]="isAppMenubarCollapsed">
+    <div class="title">
+      <h1>APPS</h1>
+    </div>
+    <div class="switch-title">
+      <h2>Switch to</h2>
+      <i class="fa-solid fa-arrow-right"></i>
+    </div>
+    <!-- Main Menu Items -->
+    <ul class="main-menu-ul">
+      <li class="main-menu-li">
+        <ng-container *ngFor="let item of AppMenuData">
+          <div
+            class="menu-item"
+            [routerLink]="item.route"
+            [ngClass]="{
+              selected: isSelected(item)
+            }"
+          >
+            <div class="app-image">
+              <img [src]="sanitizeImageUrl(item.imgUrl)" />
+            </div>
+            <div class="app-name">
+              <h1>
+                {{ item.label }}
+              </h1>
+            </div>
+          </div>
+        </ng-container>
+      </li>
+    </ul>
+
+    <div class="explore-apps" routerLink="/apps/all-apps">
+      <div class="explore-icon"><i class="fa-solid fa-table-cells"></i></div>
+      <div class="explore-title" >
+        <h1>Explore Apps</h1>
+      </div>
+    </div>
+
+    <div class="footer-menu">
+      <li
+        class="menu-item"
+        *ngFor="let footerMenu of footerMenus; let i = index"
+        (click)="onItemClick(footerMenu)"
+      >
+        <div class="menu-item-icon-label">
+          <i class="{{ footerMenu.icon }}"></i>
+          <p>{{ footerMenu.label }}</p>
+        </div>
+      </li>
+    </div>
+  </div>
+</section>

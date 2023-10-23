@@ -1,0 +1,95 @@
+<section class="topbar-section" [ngClass]="{ collapsed: isSidebarCollapsed }" >
+  <div class="topbar">
+    <div class="top-menu-left">
+      <div class="toggle-search-menu">
+        <div class="logo" routerLink="/dashboard">
+          <!-- Show logo and company name when collapsed -->
+          <ng-container>
+            <img
+              class="img-without-text"
+              *ngIf="isSidebarCollapsed"
+              [src]="sanitizeImageUrl(imgUrlWithoutText)"
+              alt="Vonome Logo Without Text"
+            />
+            <img
+              class="img-with-text"
+              *ngIf="!isSidebarCollapsed"
+              [src]="sanitizeImageUrl(imgUrlWithText)"
+              alt="Vonome Logo With Text"
+            />
+          </ng-container>
+        </div>
+        <div class="app-menu-icon" (click)="toggleAppMenuBar()">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <div class="toggle-button" (click)="toggleSidebar()">
+          <i
+            class="desktop-view-icon"
+            [ngClass]="
+              isSidebarCollapsed
+                ? 'fa-solid fa-xmark'
+                : 'fa-solid fa-bars-staggered'
+            "
+          ></i>
+          <i
+            class="mobile-view-icon"
+            [ngClass]="
+              isSidebarCollapsed
+                ? 'fa-solid fa-bars-staggered'
+                : 'fa-solid fa-xmark'
+            "
+          ></i>
+        </div>
+        <div class="search-menu" *ngIf="enableSearchData">
+          <app-search-menu [searchData]="searchdata"></app-search-menu>
+        </div>
+      </div>
+      <div class="logo-middle">
+        <!-- Show logo and company name when collapsed -->
+        <a routerLink="/dashboard">
+          <ng-container>
+            <img
+              class="img-with-text"
+              [src]="sanitizeImageUrl(imgUrlWithText)"
+              alt="Vonome Logo With Text"
+            />
+          </ng-container>
+        </a>
+      </div>
+      <div class="ellipsis-icon" (click)="toggleAccordion()">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+      </div>
+    </div>
+    <div class="top-menu-right" [class.open]="isAccordionOpen">
+      <div class="accordion-content">
+        <ul>
+          <li class="directory-menu" *ngIf="enableDirectory">
+            <app-directory-menu
+              #DirectoryMenu
+              [directories]="directoryList"
+            ></app-directory-menu>
+          </li>
+          <li class="notification-menu" *ngIf="enableNotification">
+            <app-notification-menu 
+              #notificationMenu
+              [notifications]="notificationList"
+            ></app-notification-menu>
+          </li>
+         
+          <li class="email-menu" *ngIf="enableEmail">
+            <app-email-menu #emailMenu [emails]="emailList"></app-email-menu>
+          </li>
+          <li class="email-menu" *ngIf="enableEmail">
+            <app-help-menu #HelpMenu [helps]="helpList"></app-help-menu>
+          </li>
+          <li class="profile-menu" *ngIf="enableProfile">
+            <app-profile-menu
+              #profileMenu
+              [profiles]="profileList"
+            ></app-profile-menu>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

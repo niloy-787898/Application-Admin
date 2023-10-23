@@ -1,0 +1,256 @@
+@import "global-style.scss";
+
+.directory-menu {
+  position: relative;
+  .directory-icon {
+    position: relative;
+    cursor: pointer;
+    i {
+      margin: 5px 0 5px 5px;
+      padding: 5px 0px 5px 8px;
+      text-align: center;
+      height: 2.5rem;
+      font-size: 1.2rem;
+      position: relative;
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+  }
+
+  .directory-open {
+    margin-top: 8px;
+    position: absolute;
+    top: 100%;
+    right: -94px;
+    display: none;
+    z-index: 100;
+    background: $secondary-background-color;
+    font-family: $primary-font;
+    border-right: 1px solid #e3e3f7;
+    box-shadow: 0 0 #6f86e621, 0 4px 16px #b3bbc35c;
+    transition: width 0.3s ease, left 0.3s ease;
+    width: 350px;
+    height: 100vh;
+    &.open {
+      display: block;
+    }
+    &.close {
+      display: none;
+    }
+    .dropdown-menu {
+      border: 1px solid #e3e3f7;
+      box-shadow: none;
+      min-width: 250px;
+      position: relative;
+      padding: 25px 30px;
+      &::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: auto;
+        right: 91px;
+        border-bottom: 10px solid #e3e3f7;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: -8.5px;
+        left: auto;
+        right: 91px;
+        border-bottom: 9px solid #fff;
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+      }
+      .cross-icon {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        i {
+          font-size: 18px;
+          opacity: 0.7;
+        }
+      }
+      .help-name {
+        padding: 20px 0;
+        h1 {
+          font-family: $font-family-sans-serif;
+          font-size: 16px;
+          font-weight: 600;
+          line-height: 1.1;
+          color: #1c1d22;
+          opacity: 0.7;
+        }
+      }
+      .grid-display {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto; /* Add this property to enable vertical scrolling */
+        max-height: 375px; /* Set a maximum height for the container */
+        .menu-item {
+          padding: 15px 10px;
+          margin: 0;
+          border-radius: 0;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+          transition: background-color 0.3s ease, color 0.3s ease;
+
+          &:hover {
+            color: $dark-color;
+            background-color: $bs-primary;
+            .app-name {
+              h1 {
+                color: $secondary-background-color;
+              }
+              h2 {
+                color: $secondary-background-color;
+              }
+            }
+          }
+          .app-name {
+            h1 {
+              white-space: nowrap;
+              display: flex;
+              align-items: center;
+              font-size: 16px;
+              line-height: 1;
+              vertical-align: middle;
+              font-weight: 500;
+              opacity: 0.8;
+              margin-bottom: 10px;
+            }
+            h2 {
+              font-family: $font-family-monospace;
+              font-weight: 600;
+              line-height: 1.1;
+              font-size: 14px;
+              opacity: 0.7;
+            }
+          }
+          
+        }
+        /* Custom scrollbar styles */
+        &::-webkit-scrollbar {
+          width: 5px; /* Adjust the scrollbar width as needed */
+          height: 5px; /* Adjust the scrollbar height as needed */
+        }
+        &::-webkit-scrollbar-track {
+          background: #f1f1f1; /* Background color for the scrollbar track */
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #c5c4c4; /* Color of the scrollbar thumb */
+          border-radius: 5px; /* Rounded corners for the thumb */
+        }
+      }
+    }
+    .show-all {
+      background: $secondary-background-color;
+      border-top: 1px solid #e3e3f7;
+      padding: 0.75rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      a {
+        color: $primary-bg-color;
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .directory-menu {
+    position: initial;
+    .directory-icon {
+      position: relative;
+      cursor: pointer;
+      h1 {
+        font-size: 16px;
+      }
+      i {
+        padding: 10px 7px;
+        font-size: 18px;
+      }
+    }
+    .directory-open {
+      position: absolute;
+      top: 107%;
+      right: 0;
+      width: 100%;
+      height: auto;
+      margin-top: 2px;
+      &.open {
+        display: block;
+      }
+      &.close {
+        display: none;
+      }
+      .dropdown-menu {
+        border: 1px solid #e3e3f7;
+        box-shadow: none;
+        min-width: 250px;
+        position: relative;
+        padding: 20px 25px;
+
+        &::before {
+          display: none;
+        }
+        &::after {
+          display: none;
+        }
+        .cross-icon {
+          position: absolute;
+          top: 20px;
+          left: initial;
+          right: 25px;
+          cursor: pointer;
+          i {
+            font-size: 16px;
+            opacity: 0.7;
+          }
+        }
+        .grid-display{
+          .menu-item {
+            padding: 10px;
+            .app-name {
+              h1 {
+                font-size: 14px;
+                line-height: 1;
+                vertical-align: middle;
+                font-weight: 500;
+                margin-bottom: 5px;
+              }
+              h2 {
+                font-family: $font-family-monospace;
+                font-weight: 600;
+                line-height: 1.1;
+                font-size: 12px;
+                opacity: 0.7;
+              }
+            }
+          }
+        }
+       
+      }
+
+      .show-all {
+        text-align: center;
+        a {
+          p {
+            font-size: 14px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

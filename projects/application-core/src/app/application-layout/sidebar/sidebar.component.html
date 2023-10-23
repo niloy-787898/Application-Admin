@@ -1,0 +1,77 @@
+<section class="sidebar-section">
+  <div
+    class="sidebar"
+    [ngClass]="{ collapsed: isSidebarCollapsed }"
+    (mouseenter)="handleMouseEnter()"
+  >
+
+    <!-- Group Menu -->
+    <ng-container *ngFor="let group of menuData">
+      <ul class="group-menu-ul">
+        <li class="group-menu-li">
+          <div class="group-title" [ngClass]="{ hide: isSidebarCollapsed }">
+            <h1 >
+              {{ group.label }}
+            </h1>
+          </div>
+
+          <ul class="main-menu-ul">
+            <li
+              class="main-menu-li"
+              *ngFor="let menu of group.children; let i = index"
+            >
+              <div
+                class="menu-item"
+                [routerLink]="menu.url"
+                routerLinkActive="active"
+                (click)="toggleSubMenu(i, $event)"
+                [ngClass]="{ selected: isSelected(menu) }"
+              >
+                <i class="{{menu.icon}}"></i>
+                <h1 [ngClass]="{ hide: isSidebarCollapsed }">
+                  {{ menu.label }}
+                </h1>
+                <ng-container
+                  *ngIf="
+                    menu.children &&
+                    menu.children.length > 0 &&
+                    !isSidebarCollapsed
+                  "
+                >
+                  <i
+                    class="accordion-icon"
+                    [ngClass]="
+                      submenuStates[i]
+                        ? 'fa fa-angle-down'
+                        : 'fa fa-angle-right'
+                    "
+                  ></i>
+                </ng-container>
+              </div>
+              <ul
+                class="submenu-ul"
+                *ngIf="submenuStates[i] && !isSidebarCollapsed"
+                [ngClass]="{ hide: isSidebarCollapsed }"
+                (click)="stopPropagation($event)"
+              >
+                <li class="submenu-li" *ngFor="let submenu of menu.children">
+                  <h2
+                    [routerLink]="submenu.url"
+                    routerLinkActive="active"
+                    [ngClass]="{
+                      hide: isSidebarCollapsed,
+                      submenuSelected: isSelected(submenu)
+                    }"
+                  >
+                    {{ submenu.label }}
+                  </h2>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </ng-container>
+    <!-- Main Menu Items -->
+  </div>
+</section>

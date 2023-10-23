@@ -1,0 +1,39 @@
+<div class="profile-menu" (click)="handleMenuClick($event)">
+  <div class="profile-image" (click)="toggleMenu($event)">
+    <img
+      *ngIf="profiles"
+      [src]="sanitizeImageUrl(profiles[0].profileImage)"
+      alt="Profile Image"
+    />
+  </div>
+  <div class="profile-open" [class.open]="isMenuOpen">
+    <ul class="dropdown-menu">
+      <div
+        class="cross-icon"
+        [class.close]="isMenuOpen"
+        (click)="toggleMenu($event)"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="menu-name-role">
+        <h6 *ngIf="profiles">{{ profiles[0].name }}</h6>
+        <p *ngIf="profiles">{{ profiles[0].role }}</p>
+      </div>
+      <ul class="grid-display">
+        <li
+          class="menu-item"
+          *ngFor="let profileSubmenu of profiles[0].submenu; let i = index"
+          (click)="onItemClick(profileSubmenu)"
+        >
+          <div class="menu-item-icon-label">
+            <i class="{{ profileSubmenu.icon }}"></i>
+            <p>{{ profileSubmenu.label }}</p>
+          </div>
+        </li>
+      </ul>
+    </ul>
+    <div class="show-all">
+      <a routerLink="#"><p>Show All Notifications</p></a>
+    </div>
+  </div>
+</div>

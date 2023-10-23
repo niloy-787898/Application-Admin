@@ -1,0 +1,43 @@
+<div class="directory-menu" (click)="handleMenuClick($event)">
+  <div class="directory-icon" *ngIf="directories" (click)="toggleMenu($event)" >
+    <h1>{{ directories[0].key }}</h1>
+    <i class="fa-solid fa-angle-down"></i>
+  </div>
+  <div class="directory-open" [class.open]="isMenuOpen">
+    <ul class="dropdown-menu">
+      <div class="directory-name">
+        <h1>DIRECTORY ( {{ directories[0].name }} )</h1>
+      </div>
+      <div
+        class="cross-icon"
+        [class.close]="isMenuOpen"
+        (click)="toggleMenu($event)"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="heading">
+        <h2>Switch Directory</h2>
+        <i class="fa-solid fa-arrow-right"></i>
+      </div>
+      <ul class="grid-display">
+        <li
+          class="menu-item"
+          *ngFor="let directory of directories; let i = index"
+          (click)="onItemClick(directory)"
+        >
+          <div class="app-image">
+            <img [src]="sanitizeImageUrl(directory.imgUrl)" />
+          </div>
+          <div class="app-name">
+            <h1>
+              {{ directory.name }}
+            </h1>
+          </div>
+        </li>
+      </ul>
+    </ul>
+    <div class="show-all">
+      <a routerLink="#"> <p>Show All Notifications</p> </a>
+    </div>
+  </div>
+</div>

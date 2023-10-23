@@ -1,0 +1,41 @@
+<div class="notification-menu" (click)="handleMenuClick($event)">
+  <div class="notification-icon" (click)="toggleMenu($event)">
+    <i class="fa-regular fa-bell"></i>
+    <span class="pulse"></span>
+  </div>
+  <div class="notification-open" [class.open]="isMenuOpen">
+    <ul class="dropdown-menu">
+      <div
+        class="cross-icon"
+        [class.close]="isMenuOpen"
+        (click)="toggleMenu($event)"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="notification-name">
+        <h1>Notification</h1>
+      </div>
+      <ul class="grid-display">
+        <li
+          class="menu-item"
+          *ngFor="let notification of notifications; let i = index"
+          (click)="onItemClick(notification)"
+        >
+          <div
+            class="menu-item-icon"
+            [style.background-color]="getIconBackgroundColor(i)"
+          >
+            <i class="{{ notification.icon }}"></i>
+          </div>
+          <div class="menu-item-lebal-time">
+            <p>{{ notification.label }}</p>
+            <span>{{ notification.time }}</span>
+          </div>
+        </li>
+      </ul>
+    </ul>
+    <div class="show-all">
+      <a routerLink="#"> <p>Show All Notifications</p> </a>
+    </div>
+  </div>
+</div>

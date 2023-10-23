@@ -1,0 +1,32 @@
+<div class="directory-menu" (click)="handleMenuClick($event)">
+  <div class="directory-icon" *ngIf="helps" (click)="toggleMenu($event)">
+    <i class="fa-regular fa-circle-question"></i>
+  </div>
+  <div class="directory-open" [class.open]="isMenuOpen">
+    <ul class="dropdown-menu">
+      <div class="cross-icon" [class.close]="isMenuOpen" (click)="toggleMenu($event)">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="help-name">
+        <h1>Help & Support</h1>
+      </div>
+      <ul class="grid-display">
+        <li
+        class="menu-item"
+        *ngFor="let help of helps; let i = index"
+        (click)="onItemClick(help)"
+      >
+        <div class="app-name">
+          <h1>
+            {{ help.name }}
+          </h1>
+          <h2>{{help.subname}}</h2>
+        </div>
+      </li>
+      </ul>
+    </ul>
+    <div class="show-all">
+      <a routerLink="#"> <p>Show All Notifications</p> </a>
+    </div>
+  </div>
+</div>

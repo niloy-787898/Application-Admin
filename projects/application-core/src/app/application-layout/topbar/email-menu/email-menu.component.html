@@ -1,0 +1,40 @@
+<div class="email-menu" (click)="handleMenuClick($event)">
+  <div class="email-icon" (click)="toggleMenu($event)">
+    <i class="fa-regular fa-envelope"></i>
+    <span class="badge">6</span>
+  </div>
+  <div class="email-open" [class.open]="isMenuOpen">
+    <ul class="dropdown-menu">
+      <div
+        class="cross-icon"
+        [class.close]="isMenuOpen"
+        (click)="toggleMenu($event)"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="email-name">
+        <h1>E-mail</h1>
+      </div>
+      <ul class="grid-display">
+        <li
+          class="menu-item"
+          *ngFor="let email of emails; let i = index"
+          (click)="onItemClick(email)"
+        >
+          <div class="menu-item-image">
+            <img [src]="sanitizeImageUrl(email.profileImage)" alt="" />
+            <span class="avatar-status"></span>
+          </div>
+          <div class="menu-item-lebal-time">
+            <h4>{{ email.name }}</h4>
+            <h6>{{ email.tag }}</h6>
+            <p>{{ email.time }}</p>
+          </div>
+        </li>
+      </ul>
+    </ul>
+    <div class="show-all">
+      <a routerLink="#"> <p>Show All Notifications</p> </a>
+    </div>
+  </div>
+</div>

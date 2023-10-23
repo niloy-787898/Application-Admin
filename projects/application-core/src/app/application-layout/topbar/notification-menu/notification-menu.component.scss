@@ -1,0 +1,308 @@
+@import "global-style.scss";
+
+.notification-menu {
+  position: relative;
+  .notification-icon {
+    position: relative;
+    cursor: pointer;
+    i {
+      margin: 5px;
+      padding: 5px 8px;
+      text-align: center;
+      height: 2.5rem;
+      font-size: 1.2rem;
+      position: relative;
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+    .pulse {
+      display: block;
+      position: absolute;
+      top: 0.2rem;
+      right: 0.5rem;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ff1a1a;
+      cursor: pointer;
+      animation: pulse 3s infinite;
+    }
+  }
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+      box-shadow: 0 0 1px 1px #ff1a1a; /* Smaller blur */
+    }
+    25% {
+      transform: scale(1);
+      opacity: 0.9;
+      box-shadow: 0 0 6px 3px #ff1a1a; /* Larger blur */
+    }
+    50% {
+      transform: scale(1);
+      opacity: 0.8;
+      box-shadow: 0 0 1px 1px #ff1a1a; /* Smaller blur */
+    }
+    75% {
+      transform: scale(1);
+      opacity: 0.9;
+      box-shadow: 0 0 6px 3px #ff1a1a; /* Larger blur */
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+      box-shadow: 0 0 1px 1px #ff1a1a; /* Smaller blur */
+    }
+  }
+
+  .notification-open {
+    margin-top: 8px;
+    position: absolute;
+    top: 100%;
+    right: -191px;
+    display: none;
+    z-index: 100;
+    background: $secondary-background-color;
+    font-family: $primary-font;
+    border-right: 1px solid #e3e3f7;
+    box-shadow: 0 0 #6f86e621, 0 4px 16px #b3bbc35c;
+    transition: width 0.3s ease, left 0.3s ease;
+    width: 350px;
+    height: 100vh;
+    &.open {
+      display: block;
+    }
+    &.close {
+      display: none;
+    }
+    .dropdown-menu {
+      border: 1px solid #e3e3f7;
+      box-shadow: none;
+      min-width: 250px;
+      position: relative;
+      padding: 20px;
+      &::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: auto;
+        right: 202px;
+        border-bottom: 10px solid #e3e3f7;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: -8.5px;
+        left: auto;
+        right: 202px;
+        border-bottom: 9px solid #fff;
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+      }
+      .cross-icon {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        i {
+          font-size: 16px;
+          opacity: 0.7;
+        }
+      }
+      .notification-name {
+        padding: 20px 0;
+        h1 {
+          font-family: $font-family-sans-serif;
+          font-size: 16px;
+          font-weight: 600;
+          line-height: 1.1;
+          color: #1c1d22;
+          opacity: 0.7;
+        }
+      }
+      .grid-display {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto; /* Add this property to enable vertical scrolling */
+        max-height: 475px; /* Set a maximum height for the container */
+        .menu-item {
+          display: flex;
+          gap: 10px;
+          width: 100%;
+          padding: 10px 15px 10px 15px;
+          clear: both;
+          text-align: inherit;
+          white-space: nowrap;
+          background-color: transparent;
+          border: 0;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $bs-gray-300;
+          }
+          .menu-item-icon {
+            color: #fff;
+            float: left;
+            height: 40px;
+            line-height: 40px;
+            margin-right: 10px;
+            text-align: center;
+            vertical-align: middle;
+            width: 40px;
+            border-radius: 50%;
+            i {
+              font-size: 15px;
+            }
+          }
+          .menu-item-lebal-time {
+            white-space: normal;
+            width: 180px;
+            p {
+              font-family: inherit;
+              font-weight: 600;
+              line-height: 1.1;
+              color: #1c1d22;
+              font-size: 0.875rem;
+              margin-bottom: 0.25rem;
+            }
+            span {
+              color: #8c8ea9;
+              font-size: 87.5%;
+              font-weight: 400;
+            }
+          }
+        }
+        /* Custom scrollbar styles */
+        &::-webkit-scrollbar {
+          width: 3px; /* Adjust the scrollbar width as needed */
+          height: 3px; /* Adjust the scrollbar height as needed */
+        }
+        &::-webkit-scrollbar-track {
+          background: #f1f1f1; /* Background color for the scrollbar track */
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #c5c4c4; /* Color of the scrollbar thumb */
+          border-radius: 3px; /* Rounded corners for the thumb */
+        }
+      }
+    }
+    .show-all {
+      background: $secondary-background-color;
+      border-top: 1px solid #e3e3f7;
+      padding: 0.75rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      a {
+        color: $primary-bg-color;
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .notification-menu {
+    position: initial;
+    .notification-icon {
+      position: relative;
+      cursor: pointer;
+      i {
+        padding: 10px 7px;
+        font-size: 18px;
+      }
+      .pulse {
+        display: block;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        width: 5px;
+        height: 5px;
+      }
+    }
+    .notification-open {
+      position: absolute;
+      top: 107%;
+      right: 0;
+      width: 100%;
+      height: auto;
+      margin-top: 2px;
+      &.open {
+        display: block;
+      }
+      &.close {
+        display: none;
+      }
+      .dropdown-menu {
+        border: 1px solid #e3e3f7;
+        box-shadow: none;
+        min-width: initial;
+        position: relative;
+        padding: 20px;
+
+        &::before {
+          display: none;
+        }
+        &::after {
+          display: none;
+        }
+        .cross-icon {
+          position: absolute;
+          top: 20px;
+          left: initial;
+          right: 25px;
+          cursor: pointer;
+          i {
+            font-size: 16px;
+            opacity: 0.7;
+          }
+        }
+      }
+
+      .grid-display {
+        .menu-item {
+          margin-top: 0px;
+          .menu-item-icon {
+            height: 30px !important;
+            line-height: 30px !important;
+            margin-right: 5px !important;
+            width: 30px !important;
+            i {
+              font-size: 14px;
+            }
+          }
+          .menu-item-lebal-time {
+            white-space: normal;
+            width: 180px;
+            p {
+              font-size: 14px;
+              margin-bottom: 0.25rem;
+            }
+            span {
+              font-size: 87.5%;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+
+      .show-all {
+        text-align: center;
+        a {
+          p {
+            font-size: 14px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

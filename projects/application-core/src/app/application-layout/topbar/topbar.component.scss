@@ -1,0 +1,263 @@
+@import "global-style.scss";
+.topbar-section {
+  position: relative;
+  display: block;
+}
+.topbar {
+  position: fixed;
+  top: 0;
+  z-index: 9999999999;
+  transition: width 0.3s ease; /* Add transition for width */
+  background: $secondary-background-color;
+  font-family: $primary-font;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e9edf4;
+  transition: left 0.3s ease, width 0.3s ease;
+  padding: 2px 20px 2px 0;
+  width: 100%;
+}
+.top-menu-left {
+  width: 100%;
+  padding-left: 10px;
+  .toggle-search-menu {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    .logo {
+      width: 240px;
+      display: block;
+      padding: 8px 24px;
+      background: $secondary-background-color;
+      border-right: 1px solid #e3e3f7;
+      z-index: 999;
+      img {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin: 0 auto;
+        justify-content: center;
+        width: 100% !important;
+        height: 45px;
+      }
+    }
+    .app-menu-icon {
+      cursor: pointer;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease;
+      i {
+        font-size: 18px;
+        opacity: 0.7;
+      }
+      &:hover {
+        i {
+          color: $bs-primary;
+        }
+      }
+    }
+    .toggle-button {
+      cursor: pointer;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease;
+      .desktop-view-icon {
+        display: block;
+        opacity: 0.7;
+      }
+      .mobile-view-icon {
+        display: none;
+        opacity: 0.7;
+      }
+      i {
+        font-size: 16px;
+      }
+    }
+    .search-menu {
+      position: initial;
+      display: block;
+      margin-left: 10px;
+    }
+  }
+  .logo-middle {
+    display: none;
+  }
+  .ellipsis-icon {
+    display: none;
+  }
+}
+.top-menu-right {
+  width: 100%;
+  .accordion-content {
+    position: relative !important;
+    z-index: 100;
+    display: block;
+    width: 100%;
+    padding: 5px;
+    background: $secondary-background-color;
+    ul {
+      position: relative !important;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  }
+  &.open {
+    display: none;
+  }
+}
+
+//Collapsed hide
+.collapsed {
+  .logo {
+    width: 65px !important;
+    padding: 10px 10px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .topbar {
+    padding: 6px 20px;
+  }
+  .top-menu-left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5px;
+    .toggle-search-menu {
+      gap: 0;
+      .logo {
+        display: none !important;
+      }
+      .toggle-button {
+        padding: 10px;
+        .desktop-view-icon {
+          display: none;
+        }
+        .mobile-view-icon {
+          display: block;
+        }
+        i {
+          font-size: 14px;
+        }
+      }
+      .search-menu {
+        display: block;
+        margin: 0;
+      }
+    }
+
+    .logo-middle {
+      display: block;
+      z-index: 1060;
+      margin-right: -10px;
+      a {
+        img {
+          width: 130px;
+        }
+      }
+    }
+  }
+  .top-menu-right {
+    display: block; // Hide by default
+    position: initial;
+    width: 100%;
+    z-index: 1045;
+    .ellipsis-icon {
+      font-size: 14px;
+    }
+    /* Add styles for the accordion content */
+    .accordion-content {
+      padding: 2px;
+      ul {
+        padding-right: 0;
+        gap: 7px;
+      }
+    }
+    &.open {
+      display: block;
+    }
+  }
+}
+@media (max-width: 700px) {
+  .topbar {
+    padding: 6px 10px;
+    flex-direction: column;
+  }
+  .top-menu-left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0px;
+    .toggle-search-menu {
+      gap: 0;
+      .toggle-button {
+        padding: 7px;
+        .desktop-view-icon {
+          display: none;
+        }
+        .mobile-view-icon {
+          display: block;
+        }
+        i {
+          font-size: 14px;
+        }
+      }
+      .search-menu {
+        display: block;
+        margin: 0;
+      }
+    }
+
+    .logo-middle {
+      display: block;
+      z-index: 1060;
+      margin-right: 0;
+      a {
+        img {
+          width: 120px;
+        }
+      }
+    }
+    .ellipsis-icon {
+      margin: 5px;
+      padding: 5px 8px;
+      text-align: center;
+      height: 2.5rem;
+      font-size: 16px;
+      position: relative;
+      border-radius: 3px;
+      opacity: 0.7;
+      display: block;
+    }
+  }
+  .top-menu-right {
+    display: none; // Hide by default
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1045;
+    .ellipsis-icon {
+      font-size: 14px;
+    }
+    /* Add styles for the accordion content */
+    .accordion-content {
+      padding: 2px;
+      ul {
+        padding-right: 20px;
+        gap: 7px;
+      }
+    }
+    &.open {
+      display: block;
+    }
+  }
+}
