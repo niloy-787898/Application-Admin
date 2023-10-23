@@ -3,14 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { ApplicationLayoutComponent } from './application-layout.component';
 import { DashboardComponent } from '../component/dashboard/dashboard.component';
 
-
 const routes: Routes = [
   {
-    path: '', component: ApplicationLayoutComponent, 
+    path: '',
+    component: ApplicationLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
-    ]
-  }
+      // Add more child routes as needed
+    ],
+  },
 ];
 
 @NgModule({
